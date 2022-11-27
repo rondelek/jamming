@@ -4,19 +4,17 @@ import Track from "../Track/Track";
 
 
 export default function TrackList(props) {
-    console.log(props.tracks)
-    console.log(props.tracks.playlistTracks)
 
     return (
         <div className="TrackList">
-            {/* {console.log('TrackList:' + props.tracks)} */}
             {props.tracks.map(track => {
                 return <Track   track={track}
                                 key={track.id}
-                                name={track.name}
-                                onAdd={props.onAdd}/>
+                                onAdd={props.onAdd}
+                                onRemove={props.onRemove}
+                                isRemoval={props.isRemoval}
+                        />
             })}
-            {console.log(props.onAdd)}
         </div>
     )
 }

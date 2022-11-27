@@ -6,7 +6,7 @@ export default function Track(props) {
 
     function renderAction() {
         if (props.isRemoval) {
-            return <button className="Track-action">-</button>
+            return <button className="Track-action" onClick={removeTrack}>-</button>
         } else {
             return <button className="Track-action" onClick={addTrack}>+</button>
         }
@@ -14,8 +14,10 @@ export default function Track(props) {
 
     function addTrack() {
         props.onAdd(props.track);
-        console.log('addTrack')
-        console.log(props.onAdd)
+    }
+
+    function removeTrack() {
+        props.onRemove(props.track);
     }
 
     

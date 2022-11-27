@@ -13,7 +13,7 @@ export default function App(props) {
       artist: 'artist1',
       album: 'album1',
       id: 1
-    },
+    }, 
     {
       name: 'name2',
       artist: 'artist2',
@@ -22,7 +22,6 @@ export default function App(props) {
     }
   ]);
 
-  const [playlist, setPlaylist] = useState('My playlist');
   const [playlistTracks, setPlaylistTracks] = useState([
     {
       name: 'playlistName1',
@@ -39,27 +38,32 @@ export default function App(props) {
   ]);
 
   function addTrack(track) {
-    let tracks = playlistTracks;
-    if (tracks.find(savedTrack => savedTrack.id === track.id)) {
-      return;
-    }
-    tracks.push(track);
-    console.log('pushed')
-    setPlaylistTracks({playlistTracks: [...playlistTracks, track]});
+    setPlaylistTracks(oldPlaylistTracks => {
+      if (oldPlaylistTracks.includes(track)) {
+        return oldPlaylistTracks;
+      } else {
+        return [...oldPlaylistTracks, track];
+      }
+    })
   }
+
+  function removeTrack(track) {
+    setPlaylistTracks(oldPlaylistTracks => oldPlaylistTracks.filter(t => track !== t));
+  }
+
 
   return (
     <div>
       <h1>Ja<span className="highlight">mmm</span>ing</h1>
       <div className="App">
-        {console.log(searchResults)}
         <SearchBar />
         <div className="App-playlist">
           <SearchResults  searchResults={searchResults} 
-                          onAdd={addTrack}/>
-          <Playlist   playlist={playlist} 
-                      playlistTracks={playlistTracks}
-                      onAdd={addTrack}/>
+                          onAdd={addTrack}
+                          onRemove={removeTrack}/>
+          <Playlist   playlistTracks={playlistTracks}
+                      onAdd={addTrack}
+                      onRemove={removeTrack}/>
         </div>
       </div>
     </div>
