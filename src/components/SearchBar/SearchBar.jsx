@@ -1,11 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import './SearchBar.css';
 
 
-export default function SearchBar() {
+export default function SearchBar(props) {
+    
+    const [searchTerm, setSearchTerm] = useState()
+
+    function searchSpotify() {
+        props.onSearch(props.term);
+    }
+
+    function handleTermChange(e) {
+        setSearchTerm(e.target.value);
+        console.log('new term: ' + searchTerm)
+    }
+ 
     return (
         <div className="SearchBar">
-            <input placeholder="Enter A Song, Album, or Artist" />
+            <input  onChange={handleTermChange}
+                    placeholder="Enter A Song, Album, or Artist" />
             <button className="SearchButton">SEARCH</button>
         </div>
     )

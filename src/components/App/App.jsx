@@ -51,19 +51,29 @@ export default function App(props) {
     setPlaylistTracks(oldPlaylistTracks => oldPlaylistTracks.filter(t => track !== t));
   }
 
+  function savePlaylist() {
+    alert('save playlist')
+    const trackUris = playlistTracks.map(track => track.uri);
+  }
+
+  function searchSpotify(searchTerm) {
+      console.log(searchTerm);
+  }
+
 
   return (
     <div>
       <h1>Ja<span className="highlight">mmm</span>ing</h1>
       <div className="App">
-        <SearchBar />
+        <SearchBar  onSearch={searchSpotify}/>
         <div className="App-playlist">
           <SearchResults  searchResults={searchResults} 
                           onAdd={addTrack}
                           onRemove={removeTrack}/>
           <Playlist   playlistTracks={playlistTracks}
                       onAdd={addTrack}
-                      onRemove={removeTrack}/>
+                      onRemove={removeTrack}
+                      onSave={savePlaylist}/>
         </div>
       </div>
     </div>
