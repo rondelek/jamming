@@ -1,6 +1,6 @@
 import React from "react";
 
-const clientId = '7ee319d056bc4330b3fe4c72328360a9';
+const clientId = '4b26edc0c33541e5b87b78d6bcdd08a2';
 const redirectUri = 'https://jamming-psi.vercel.app/';
 let accessToken;
 
