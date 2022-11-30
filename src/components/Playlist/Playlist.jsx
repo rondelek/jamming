@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import './Playlist.css'
 import TrackList from "../TrackList/TrackList";
+import Spotify from "../../util/Spotify";
 
 
 export default function Playlist(props) {
@@ -11,6 +12,15 @@ export default function Playlist(props) {
         setPlaylistName(e.target.value);
     }
 
+    function savePlaylist() {
+        const trackUris = props.playlistTracks.map(track => track.uri);
+        Spotify.savePlaylist(playlistName, trackUris).then(() => {
+            setPlaylistName('New playlist')
+            props.setPlaylistTracks([])
+        })
+    }
+    
+
     return (
         <div className="Playlist">
             <input  onChange={handlePlaylistNameChange}
@@ -19,7 +29,7 @@ export default function Playlist(props) {
                         onAdd={props.onAdd} 
                         onRemove={props.onRemove}
                         isRemoval={true}/>
-            <button className="Playlist-save" onClick={props.onSave}>SAVE TO SPOTIFY</button>
+            <button className="Playlist-save" onClick={savePlaylist}>SAVE TO SPOTIFY</button>
         </div>
     )
 } 

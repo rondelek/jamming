@@ -6,6 +6,7 @@ export default function SearchBar(props) {
     
     const [searchTerm, setSearchTerm] = useState()
 
+
     function searchSpotify() {
         props.onSearch(props.term);
     }
@@ -19,7 +20,7 @@ export default function SearchBar(props) {
         <div className="SearchBar">
             <input  onChange={handleTermChange}
                     placeholder="Enter A Song, Album, or Artist" />
-            <button className="SearchButton">SEARCH</button>
+            <button className="SearchButton" onClick={searchSpotify}>SEARCH</button>
         </div>
     )
 

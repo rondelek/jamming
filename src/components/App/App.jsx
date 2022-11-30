@@ -3,39 +3,14 @@ import './App.css'
 import Playlist from "../Playlist/Playlist";
 import SearchBar from "../SearchBar/SearchBar";
 import SearchResults from "../SearchResults/SearchResults";
+import Spotify from "../../util/Spotify";
 
 
 export default function App(props) {
 
-  const [searchResults, setSearchResults] = useState([
-    {
-      name: 'name1',
-      artist: 'artist1',
-      album: 'album1',
-      id: 1
-    }, 
-    {
-      name: 'name2',
-      artist: 'artist2',
-      album: 'album2',
-      id: 2
-    }
-  ]);
+  const [searchResults, setSearchResults] = useState([]);
 
-  const [playlistTracks, setPlaylistTracks] = useState([
-    {
-      name: 'playlistName1',
-      artist: 'playlistArtist1',
-      album: 'playlistAlbum1',
-      id: 4
-    },
-    {
-      name: 'playlistName2',
-      artist: 'playlistArtist2',
-      album: 'playlistAlbum2',
-      id: 5
-    }
-  ]);
+  const [playlistTracks, setPlaylistTracks] = useState([]);
 
   function addTrack(track) {
     setPlaylistTracks(oldPlaylistTracks => {
@@ -51,13 +26,15 @@ export default function App(props) {
     setPlaylistTracks(oldPlaylistTracks => oldPlaylistTracks.filter(t => track !== t));
   }
 
-  function savePlaylist() {
-    alert('save playlist')
-    const trackUris = playlistTracks.map(track => track.uri);
-  }
 
-  function searchSpotify(searchTerm) {
-      console.log(searchTerm);
+  function searchSpotify(term) {
+    // Spotify.searchSpotify(searchTerm).then(searchResults => {
+    //   setSearchResults(searchResults);
+    // })
+    Spotify.searchSpotify(term).then(results => {
+      setSearchResults({results})
+    })
+    console.log(searchResults)
   }
 
 
@@ -71,9 +48,9 @@ export default function App(props) {
                           onAdd={addTrack}
                           onRemove={removeTrack}/>
           <Playlist   playlistTracks={playlistTracks}
+                      updatePlaylistTracks={setPlaylistTracks}
                       onAdd={addTrack}
-                      onRemove={removeTrack}
-                      onSave={savePlaylist}/>
+                      onRemove={removeTrack}/>
         </div>
       </div>
     </div>
