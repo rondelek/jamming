@@ -1,7 +1,7 @@
 import React from "react";
 
 const clientId = '4b26edc0c33541e5b87b78d6bcdd08a2';
-const redirectUri = 'http://localhost:3000/';
+const redirectUri = 'https://jamming-psi.vercel.app/';
 let accessToken;
 
 const Spotify = {
