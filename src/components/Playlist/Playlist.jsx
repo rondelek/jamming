@@ -16,7 +16,7 @@ export default function Playlist(props) {
         const trackUris = props.playlistTracks.map(track => track.uri);
         Spotify.savePlaylist(playlistName, trackUris).then(() => {
             setPlaylistName('New playlist')
-            props.setPlaylistTracks([])
+            props.updatePlaylistTracks([])
         })
     }
     

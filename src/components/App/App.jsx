@@ -28,13 +28,9 @@ export default function App(props) {
 
 
   function searchSpotify(term) {
-    // Spotify.searchSpotify(searchTerm).then(searchResults => {
-    //   setSearchResults(searchResults);
-    // })
     Spotify.searchSpotify(term).then(results => {
-      setSearchResults({results})
+      setSearchResults(results)
     })
-    console.log('searchResults:' + ' ' + searchResults)
   }
 
 

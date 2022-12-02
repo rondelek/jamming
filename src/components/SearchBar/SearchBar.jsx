@@ -1,20 +1,22 @@
 import React, { useState } from "react";
 import './SearchBar.css';
+import Spotify from "../../util/Spotify";
 
 
 export default function SearchBar(props) {
+
+    const [searchResults, setSearchResults] = useState([]);
+
     
     const [searchTerm, setSearchTerm] = useState()
 
 
     function searchSpotify() {
-        console.log('searchTerm:' + ' ' + searchTerm)
-        props.onSearch(props.term);
+        props.onSearch(searchTerm);
     }
 
     function handleTermChange(e) {
         setSearchTerm(e.target.value);
-        console.log('new term: ' + searchTerm)
     }
  
     return (

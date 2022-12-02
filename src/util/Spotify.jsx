@@ -1,7 +1,7 @@
 import React from "react";
 
 const clientId = '4b26edc0c33541e5b87b78d6bcdd08a2';
-const redirectUri = 'https://jamming-psi.vercel.app/';
+const redirectUri = 'http://localhost:3000/';
 let accessToken;
 
 const Spotify = {
@@ -69,7 +69,7 @@ const Spotify = {
                     }).then(response => response.json()
                     ).then(jsonResponse => {
                         const playlistId = jsonResponse.id;
-                        return fetch(`https://api.spotify.com/v1/users/${userId}playlists/${playlistId}/tracks`, {
+                        return fetch(`https://api.spotify.com/v1/users/${userId}/playlists/${playlistId}/tracks`, {
                             headers: headers,
                             method: 'POST',
                             body: JSON.stringify({uris: trackUris})
