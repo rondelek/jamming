@@ -8,6 +8,7 @@ export default function SearchBar(props) {
 
 
     function searchSpotify() {
+        console.log('searchTerm:' + ' ' + searchTerm)
         props.onSearch(props.term);
     }
 

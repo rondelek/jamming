@@ -34,7 +34,7 @@ export default function App(props) {
     Spotify.searchSpotify(term).then(results => {
       setSearchResults({results})
     })
-    console.log(searchResults)
+    console.log('searchResults:' + ' ' + searchResults)
   }
 
 
